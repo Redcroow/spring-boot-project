@@ -1,4 +1,4 @@
-package com.cogenio.springbootproject.model;
+package com.cogenio.springbootproject.model.json;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,12 +8,12 @@ import org.springframework.http.HttpStatus;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class JsonResponse {
+public class HelloWorldResponse {
     private String status;
     private String message;
     private int statusCode;
 
-    public JsonResponse(HttpStatus httpStatus, String message) {
+    public HelloWorldResponse(HttpStatus httpStatus, String message) {
         this.status = httpStatus.is2xxSuccessful() ? "success" : "error";
         this.statusCode = httpStatus.value();
         this.message = message;
