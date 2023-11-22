@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cogenio.springbootproject.model.JsonResponse;
+import com.cogenio.springbootproject.model.json.HelloWorldResponse;
 import com.cogenio.springbootproject.service.HelloWorldService;
 
 @RestController
@@ -17,12 +17,12 @@ public class HelloWorldController {
     }
 
     @GetMapping("/hello")
-    public JsonResponse getHelloWorld() {
+    public HelloWorldResponse getHelloWorld() {
         try {
             String message = helloWorldService.getHelloWorld();
-            return new JsonResponse(HttpStatus.OK, message);
+            return new HelloWorldResponse(HttpStatus.OK, message);
         } catch (Exception e) {
-            return new JsonResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
+            return new HelloWorldResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         }
     }
 }
