@@ -7,12 +7,22 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
+
+    public List<UserResponse.UserInfo> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return users.stream()
+                .map(UserResponse.UserInfo::new)
+                .collect(Collectors.toList());
+    }
+
 
     public User getUserById(Long userId) {
         return userRepository.findById(userId)

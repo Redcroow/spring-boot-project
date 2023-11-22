@@ -16,6 +16,15 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping("/users/all")
+    public UserResponse.UserGetAllResponse getAllUsers() {
+        try {
+            return new UserResponse.UserGetAllResponse(HttpStatus.OK, "Users retrieved successfully", userService.getAllUsers());
+        } catch (Exception e) {
+            return new UserResponse.UserGetAllResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), null);
+        }
+    }
+
     @PostMapping("/users")
     public UserResponse.UserCreateResponse createUser(@RequestBody User user) {
         try {
